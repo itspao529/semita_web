@@ -1,5 +1,5 @@
 // Cambia esta URL cuando subas la API a Render
-const API_URL = "http://localhost:3000";
+const API_URL = "https://semita-api-pjk7.onrender.com";
 
 const $ = (id) => document.getElementById(id);
 
@@ -28,6 +28,8 @@ async function actualizar() {
     $("modoActual").textContent = e.modo;
     $("modoActual").className =
       "badge badge-estado " + (e.modo === "automatico" ? "bg-success" : "bg-primary");
+
+    $("motorActual").textContent = e.motor;
 
     $("motorActual").className =
   "badge badge-estado " +
