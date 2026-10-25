@@ -1,0 +1,342 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;600;700&display=swap");
+
+:root {
+  --rosa: #ff6fa5;
+  --rosa-claro: #ffe3ee;
+  --lila: #b79cff;
+  --durazno: #ffd1b8;
+  --grana: #a50044;
+  --azul: #004d98;
+  --dorado: #edbb00;
+  --texto: #4a2c4f;
+  --sombra: 0 12px 35px rgba(255, 111, 165, 0.22);
+  --sombra-hover: 0 22px 50px rgba(183, 156, 255, 0.45);
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  color: var(--texto);
+  min-height: 100vh;
+  background: linear-gradient(160deg, #fff0f6 0%, #f3e8ff 50%, #ffe9dc 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Globos de color flotando al fondo */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: deriva 14s ease-in-out infinite alternate;
+}
+body::before {
+  width: 380px; height: 380px;
+  top: 8%; left: -80px;
+  background: var(--rosa);
+}
+body::after {
+  width: 420px; height: 420px;
+  bottom: 5%; right: -100px;
+  background: var(--lila);
+  animation-delay: -6s;
+}
+
+/* ---------- Encabezado ---------- */
+.barra {
+  background: linear-gradient(120deg, #ff6fa5, #b79cff 50%, #6c8dff);
+  background-size: 200% 200%;
+  animation: fondoMovil 9s ease infinite;
+  color: #fff;
+  border-radius: 0 0 50% 50% / 0 0 45px 45px;
+  border-bottom: 5px solid var(--dorado);
+  box-shadow: 0 12px 35px rgba(183, 156, 255, 0.5);
+  padding-bottom: 2.2rem !important;
+}
+
+.barra h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-shadow: 0 3px 12px rgba(120, 30, 90, 0.35);
+}
+
+.barra small {
+  letter-spacing: 3px;
+  opacity: 0.95;
+  font-weight: 600;
+}
+
+.escudo {
+  height: 120px;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.9)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.3));
+  animation: flotar 3.5s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+.escudo:hover { transform: scale(1.18) rotate(-6deg); }
+
+/* ---------- Títulos ---------- */
+main h2 {
+  font-weight: 700;
+  color: var(--grana);
+  position: relative;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 8px;
+}
+main h2::after {
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: var(--rosa);
+  letter-spacing: 6px;
+  transition: letter-spacing 0.4s ease;
+}
+main h2:hover::after { letter-spacing: 14px; }
+
+/* ---------- Integrantes ---------- */
+section .row > div {
+  animation: subir 0.8s ease both;
+}
+section .row > div:nth-child(1) { animation-delay: 0.1s; }
+section .row > div:nth-child(2) { animation-delay: 0.25s; }
+section .row > div:nth-child(3) { animation-delay: 0.4s; }
+section .row > div:nth-child(4) { animation-delay: 0.55s; }
+
+.foto {
+  width: 135px;
+  height: 135px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, var(--rosa), var(--lila), var(--dorado)) border-box;
+  box-shadow: var(--sombra);
+  transition: transform 0.45s cubic-bezier(.2, 1.6, .4, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+.foto:hover {
+  transform: scale(1.15) rotate(-4deg);
+  box-shadow: 0 0 0 8px rgba(255, 111, 165, 0.25), var(--sombra-hover);
+}
+
+section .row p {
+  font-weight: 700;
+  color: var(--texto);
+  transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+}
+section .row > div:hover p {
+  color: var(--rosa);
+  transform: translateY(-3px);
+  letter-spacing: 1px;
+}
+
+/* ---------- Tarjetas ---------- */
+.card {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--sombra);
+  position: relative;
+  overflow: hidden;
+  animation: subir 0.9s ease both;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 7px;
+  background: linear-gradient(90deg, var(--rosa), var(--lila), var(--durazno));
+}
+.col-md-6:nth-child(2) .card { animation-delay: 0.2s; }
+.card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: var(--sombra-hover);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  transition: transform 0.25s cubic-bezier(.2, 1.6, .4, 1), box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* brillo que cruza el botón */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -80%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+}
+.btn:hover:not(:disabled)::after {
+  left: 130%;
+  transition: left 0.7s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 25px rgba(255, 111, 165, 0.4);
+}
+.btn:active:not(:disabled) { transform: scale(0.94); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(0.4); }
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff7eb3, #b79cff);
+  color: #fff;
+}
+.btn-danger {
+  background: linear-gradient(135deg, #ff5f7e, var(--grana));
+  color: #fff;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-group .btn {
+  padding: 10px 26px;
+  border-radius: 50px !important;
+  background: #fff;
+  border: 2px solid var(--lila);
+  color: var(--lila);
+}
+.btn-outline-primary.active,
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, #ff7eb3, #b79cff) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+.btn-outline-success { border-color: #ff9ad5 !important; color: #e0559a !important; }
+.btn-outline-success.active,
+.btn-outline-success:hover {
+  background: linear-gradient(135deg, #ffb199, #ff6fa5) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+/* onda al hacer clic */
+.onda {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: onda 0.65s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ---------- Display de distancia ---------- */
+.display {
+  background: radial-gradient(circle at 50% 0%, #4a2260, #1d0b2b);
+  color: #ffc2e6;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 3.6rem;
+  border-radius: 28px;
+  padding: 14px 28px;
+  display: inline-block;
+  min-width: 250px;
+  margin: 8px 0;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 10px #ff6fa5, 0 0 26px rgba(255, 111, 165, 0.8);
+  animation: brillo 2.6s ease-in-out infinite alternate;
+}
+.unidad { font-size: 1.3rem; opacity: 0.85; }
+
+/* ---------- Badges ---------- */
+.badge-estado {
+  font-size: 1rem;
+  padding: 9px 20px;
+  border-radius: 50px;
+  text-transform: capitalize;
+  color: #fff !important;
+  transition: transform 0.3s ease, background 0.4s ease;
+}
+.badge-estado.bg-primary   { background: linear-gradient(135deg, #b79cff, #7f9cff) !important; }
+.badge-estado.bg-success   { background: linear-gradient(135deg, #ff9ad5, #ff6fa5) !important; }
+.badge-estado.bg-danger    { background: linear-gradient(135deg, #ff7e95, #d6004c) !important; }
+.badge-estado.bg-warning   { background: linear-gradient(135deg, #ffd27a, #ffa36b) !important; }
+.badge-estado.bg-secondary { background: linear-gradient(135deg, #cdbfe0, #b3a4c8) !important; }
+
+.motor-activo { animation: pulso 1s ease-in-out infinite; }
+
+#conexion { font-weight: 600; }
+
+/* ---------- Pie ---------- */
+footer { color: var(--texto) !important; font-weight: 600; }
+footer img {
+  transition: transform 0.4s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+footer img:hover { transform: scale(1.25) rotate(10deg); }
+
+/* ---------- Corazones al hacer clic ---------- */
+.chispa {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 1.3rem;
+  animation: chispa 1s ease-out forwards;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fondoMovil {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes deriva {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, -50px) scale(1.2); }
+}
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+@keyframes subir {
+  from { opacity: 0; transform: translateY(35px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes brillo {
+  from { box-shadow: 0 0 12px rgba(255, 111, 165, 0.35), inset 0 0 20px rgba(255, 111, 165, 0.15); }
+  to   { box-shadow: 0 0 34px rgba(255, 111, 165, 0.75), inset 0 0 32px rgba(255, 111, 165, 0.3); }
+}
+@keyframes pulso {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.14); }
+}
+@keyframes onda {
+  to { transform: scale(2.6); opacity: 0; }
+}
+@keyframes chispa {
+  0%   { opacity: 1; transform: translate(0, 0) scale(0.6); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(25deg); }
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 576px) {
+  .barra h1 { font-size: 2.1rem; }
+  .escudo { height: 90px; }
+  .display { font-size: 2.6rem; min-width: 190px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
